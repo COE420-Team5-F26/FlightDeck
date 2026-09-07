@@ -8,3 +8,7 @@ Baden Albert Dominic Paiva
 Syed Musab 
      - Technical Skills: Python, Java, C++ , SQL, JavaScript, HTML, CSS, Assembly
      - Other Skills: Research
+
+Sai Satvik 
+     - Technical Skills: Python, Java, C++ , SQL, JavaScript, HTML, CSS, Assembly, PowerBi, R-code, Node, React, Bootstrap, Jupiter Notebook
+     - Other Skills: Building Agentic AI
