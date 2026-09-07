@@ -12,3 +12,7 @@ Syed Musab
 Sai Satvik 
      - Technical Skills: Python, Java, C++ , SQL, JavaScript, HTML, CSS, Assembly, PowerBi, R-code, Node, React, Bootstrap, Jupiter Notebook
      - Other Skills: Building Agentic AI
+
+Farah Jayas
+     - Technical Skills: Python, Java, C++ , SQL, JS, HTML/CSS, Assembly, Power BI, Power Apps
+     - Other Skills: Teamwork, Communication 
