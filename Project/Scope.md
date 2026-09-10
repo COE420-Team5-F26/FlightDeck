@@ -6,7 +6,7 @@ FlightDeck is a system for tracking and coordinating airport operations in real 
 ## 2. Target Users
 - **Airport operations staff** - monitor overall airport activity and flight status
 - **Ground control personnel** - manage runway usage and coordinate aircraft movement
-- **Airline coordinators** - track their airline's flights, bay assignmen and status updates
+- **Airline coordinators** - track their airline's flights, bay assignment and status updates
 
 ## 3. In-Scope Features
 - Real time tracking of incoming and outgoing flights, with status updates (scheduled, boarding, departed, landed, delayed, etc.)
