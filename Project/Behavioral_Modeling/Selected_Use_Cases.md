@@ -1,0 +1,7 @@
+# Selected Use Cases
+
+| Use Case ID | Use Case Name | Primary Actor | Purpose | Reason for Selection |
+|---|---|---|---|---|
+| UC-01 | Assign Runway | Ground Control Personnel | Ground control assigns an available runway to a departing or arriving flight for a given time window. | Runway assignment is FlightDeck's core safety-critical function (FR-01, FR-02, FR-03, FR-19; S-01, S-03). It includes the runway conflict check (UC-02) and extends to the conflict alert (UC-03). |
+| UC-04 | Reassign Runway | Ground Control Personnel | Ground control moves an already-assigned flight to a different runway (e.g., after a weather closure) and records the reason for the change. | Reassignment after a closure is FlightDeck's main disruption-handling scenario. It combines conflict checking with change logging (FR-02, FR-04, FR-14, FR-19; S-01). It includes UC-02 and UC-15. |
+| UC-11 | Assign Bay | Airport Operations Staff | Staff assign an available parking bay to an arriving aircraft for a given time window. | Bay allocation is a core function of FlightDeck. It includes the bay conflict check (UC-12) and extends to the conflict alert (UC-13), so it has real interaction between objects (FR-11, FR-12, FR-15, NFR-12; S-01, S-03). |
