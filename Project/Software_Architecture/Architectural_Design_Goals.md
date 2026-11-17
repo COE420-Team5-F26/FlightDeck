@@ -1,0 +1,8 @@
+# Architectural Design Goals — FlightDeck
+
+The design goals come from FlightDeck's non-functional requirements (Lab 3). We use them to compare alternative designs and to make design trade-offs (Lecture 08, *System Design Basic Steps*).
+
+| Goal ID | Design Goal | Description | Related Requirement | Priority | Justification |
+|---|---|---|---|---|---|
+| DG-01 | Maintainability / Modularity | The system is split into highly coherent components with low coupling that communicate only through narrow, well-defined interfaces. One component can change (e.g. the bay allocation logic, the tower feed source or the database) can change without changing the others. | NFR-11 (bay and runway allocation in separate, independently testable modules), NFR-19 (tower feed behind a single adapter interface) | High | Two requirements ask for modular boundaries directly. The team builds in spiral iterations, so components are changed and retested often. Four team members can also work on separate components in parallel. |
+| DG-02 | Reliability | No confirmed runway or bay assignment is lost. Data is persisted before the user sees confirmation, and the system keeps running when the external tower feed fails. | NFR-02, NFR-12 (persist before confirming), NFR-08 (keep operating with "stale data" if the feed is lost), NFR-20 (UTC timestamps) | High | Runway and bay assignment is FlightDeck's safety-critical function (UC-01, UC-04, UC-11). A lost assignment could put two aircraft on the same runway or bay. Concurrency and state-synchronization are also listed as risks R4 and R5 in the feasibility study. |
