@@ -17,5 +17,5 @@ Airport operations staff, ground control personnel, and airline coordinators who
 ## Key Functionalities
 - Display real-time status of all tracked flights
 - Assign and update runway usage per flight
-- Assign, occupy, and free up parking bays
+- Assign, reassign, occupy, and free up parking bays
 - Present a consolidated dashboard of current airport operations

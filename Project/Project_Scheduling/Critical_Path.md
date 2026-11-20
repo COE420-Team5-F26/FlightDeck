@@ -2,27 +2,29 @@
 
 ## Critical Path
 
-**T1 → T2 → T4 → T5 → T7 → T9 → T11 → T12 → T13**
+**T1 → T2 → T4 → T5 → T6 → T7 → T8 → T11 → T12 → T13 → T14 → T15 → T16**
 
 ## Expected Project Duration
 
-**44 days**
+**59 days** (three spiral cycles: days 1-27, 28-40 and 41-59)
 
 ## Explanation
 
-From the forward and backward pass in Exercise 6, the Critical Path is the chain of activities whose Slack (LS − ES) equals 0. These are T1, T2, T4, T5, T7, T9, T11, T12 and T13. Their earliest and latest dates are identical, so any delay in one of them delays the whole project by the same amount.
+The forward and backward passes use inclusive day numbers (EF = ES + duration − 1, LS = LF − duration + 1). The critical path is the chain of tasks whose slack (LS − ES) is 0. These tasks have identical earliest and latest dates, so a delay in any of them delays the whole project by the same amount.
 
-**Duration:** 4 (T1) + 5 (T2) + 4 (T4) + 6 (T5) + 7 (T7) + 6 (T9) + 4 (T11) + 5 (T12) + 3 (T13) = **44 days**. This matches EF of T13 = 44 in the forward pass and LF of T13 = 44 in the backward pass.
+**Duration:** 4 (T1) + 5 (T2) + 4 (T4) + 6 (T5) + 5 (T6) + 3 (T7) + 7 (T8) + 3 (T11) + 3 (T12) + 6 (T13) + 4 (T14) + 5 (T15) + 4 (T16) = **59 days**. This matches EF of T16 = 59 in the forward pass and LF of T16 = 59 in the backward pass.
 
-**Why this path:** after T5, the three parallel modules finish at T6 = day 24, T8 = day 25 and T7 = day 26. T7 (runway assignment, 7 days) is the longest, so T9 and T10 must wait for it, which makes T7 the driver of the schedule. T9 (EF = 32) finishes later than T10 (EF = 29), so T9 drives T11 and the final tasks T12 and T13.
+**Why this path:**
+- Cycle 1 builds the data foundation in sequence: database → authentication → flight records → status/feed. UI design (T3, EF = 10) runs in parallel and finishes long before T6 (EF = 24), so T6 drives the cycle 1 review (T7).
+- In cycle 2, runway assignment (T8, 7 days, EF = 34) takes longer than the bay module (T9, EF = 33) and the test plan (T10, EF = 30). So T8 drives the change log (T11) and the cycle 2 review (T12).
+- Cycle 3 is a single chain.
 
 ## Non-Critical Tasks
 
-| Task | Slack (days) |
-|------|--------------|
-| T3 | 16 |
-| T6 | 2 |
-| T8 | 1 |
-| T10 | 3 |
+| Task | ES | EF | LS | LF | Slack (days) |
+|------|----|----|----|----|--------------|
+| T3 | 5 | 10 | 19 | 24 | 14 |
+| T9 | 28 | 33 | 29 | 34 | 1 |
+| T10 | 28 | 30 | 35 | 37 | 7 |
 
-These tasks can slip by up to that many days without extending the 44-day project. Any delay beyond that, or any delay to a critical task, would extend the project.
+These tasks can slip by up to that many days without extending the 59-day project. Any delay beyond that, or any delay to a critical task, would extend the project. 

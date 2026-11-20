@@ -11,7 +11,8 @@ FlightDeck is a system for tracking and coordinating airport operations in real 
 ## 3. In-Scope Features
 - Real time tracking of incoming and outgoing flights, with status updates (scheduled, boarding, departed, landed, delayed, etc.)
 - Runway assignment and management for departures and arrivals
-- Bay allocation - assigning, occupying, and freeing parking bays for aircraft
+- Bay allocation - assigning, reassigning, occupying, and freeing parking bays for aircraft
+- Automatic flight status updates from a simulated tower status feed, with manual override by operations staff
 - A centralized dashboard presenting a consolidated, unified view of current airport operations
 
 ## 4. Out-of-Scope Features
@@ -19,7 +20,7 @@ FlightDeck is a system for tracking and coordinating airport operations in real 
 - Baggage handling and tracking
 - Integration with reservation systems
 - Automated/AI-driven scheduling or conflict resolution for runways and bays
-- Weather and air-traffic-control (ATC) system integration
+- Weather and air-traffic-control (ATC) system integration (FlightDeck reads a *simulated* tower status feed through one adapter, see FR-18 and NFR-19; connecting to a real ATC system is out of scope)
 - Billing, invoicing, or financial operations
 - Native mobile application (initial version is a single web based system)
 
@@ -28,4 +29,5 @@ FlightDeck is a system for tracking and coordinating airport operations in real 
 - Source code hosted in the team's GitHub repository, organized per the required structure
 - Project documentation (scope, process model, risk register, stakeholder analysis, feasibility study)
 - Test plan and test results for implemented features
+- User guide for the three user roles
 - Final report summarizing decisions and team contributions

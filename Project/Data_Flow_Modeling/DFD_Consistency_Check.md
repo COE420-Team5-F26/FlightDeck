@@ -4,13 +4,13 @@
 
 | Code | Entity / process | Data flow contents |
 |------|------------------|--------------------|
-| C1 | Airline Coordinator → 0 | Login credentials; airline filter criteria; flight lookup request |
-| C2 | 0 → Airline Coordinator | Authentication result; filtered flight list; flight status, bay, last update time |
-| C3 | Ground Control Personnel → 0 | Login credentials; runway assignment request; runway reassignment request + reason; runway closure/reopen + reason; bay assignment request |
-| C4 | 0 → Ground Control Personnel | Authentication result; runway assignment confirmation; runway status; runway conflict alert; bay assignment confirmation; bay conflict alert |
-| C5 | Airport Operations Staff → 0 | Login credentials; flight record details (create/edit/cancel); manual status override + reason; bay assignment request; bay occupancy update; dashboard filter criteria; change log query |
-| C6 | 0 → Airport Operations Staff | Authentication result; flight record confirmation; override confirmation; bay assignment confirmation; bay occupancy confirmation; bay conflict alert; dashboard view; change log records |
-| C7 | Tower Status Feed → 0 | Flight status updates |
+| C1 | Airline Coordinator → 0.0 | Login credentials; flight list request; flight lookup request |
+| C2 | 0.0 → Airline Coordinator | Authentication result; own-airline flight list; flight status, bay, last update time |
+| C3 | Ground Control Personnel → 0.0 | Login credentials; runway assignment request; runway reassignment request + reason; runway closure/reopen + reason; bay assignment request; bay reassignment request + reason |
+| C4 | 0.0 → Ground Control Personnel | Authentication result; runway assignment confirmation; runway status; runway conflict alert; flights still assigned to a closed runway; bay assignment confirmation; bay reassignment confirmation; bay conflict alert |
+| C5 | Airport Operations Staff → 0.0 | Login credentials; flight record details (create/edit/cancel); manual status override + reason; bay assignment request; bay reassignment request + reason; bay occupancy update (bay, flight); dashboard filter criteria; change log query |
+| C6 | 0.0 → Airport Operations Staff | Authentication result; flight record confirmation; override confirmation; bay assignment confirmation; bay reassignment confirmation; bay occupancy confirmation; bay conflict alert; dashboard view; change log records |
+| C7 | Tower Status Feed → 0.0 | Flight status updates |
 
 ## Level-0 DFD: External Entity Flows (balanced with the Context Diagram)
 
@@ -23,19 +23,19 @@
 | E3a | Airport Operations Staff → 1.0 | Login credentials |
 | E3b | 1.0 → Airport Operations Staff | Authentication result |
 | E4a | Ground Control Personnel → 4.0 | Runway assignment request; runway reassignment request + reason; runway closure/reopen request + reason |
-| E4b | 4.0 → Ground Control Personnel | Runway assignment confirmation; runway status; runway conflict alert |
-| E5a | Ground Control Personnel → 5.0 | Bay assignment request |
-| E5b | 5.0 → Ground Control Personnel | Bay assignment confirmation; bay conflict alert |
-| E6a | Airport Operations Staff → 5.0 | Bay assignment request; bay occupancy update |
-| E6b | 5.0 → Airport Operations Staff | Bay assignment confirmation; bay occupancy confirmation; bay conflict alert |
+| E4b | 4.0 → Ground Control Personnel | Runway assignment confirmation; runway status; runway conflict alert; flights still assigned to a closed runway |
+| E5a | Ground Control Personnel → 5.0 | Bay assignment request; bay reassignment request + reason |
+| E5b | 5.0 → Ground Control Personnel | Bay assignment confirmation; bay reassignment confirmation; bay conflict alert |
+| E6a | Airport Operations Staff → 5.0 | Bay assignment request; bay reassignment request + reason; bay occupancy update (bay, flight) |
+| E6b | 5.0 → Airport Operations Staff | Bay assignment confirmation; bay reassignment confirmation; bay occupancy confirmation; bay conflict alert |
 | E7a | Airport Operations Staff → 2.0 | Flight record details (create/edit/cancel) |
 | E7b | 2.0 → Airport Operations Staff | Flight record confirmation |
 | E8a | Airport Operations Staff → 3.0 | Manual status override + reason |
 | E8b | 3.0 → Airport Operations Staff | Override confirmation |
 | E9a | Airport Operations Staff → 6.0 | Dashboard filter criteria |
 | E9b | 6.0 → Airport Operations Staff | Dashboard view |
-| E10a | Airline Coordinator → 6.0 | Airline filter criteria; flight lookup request |
-| E10b | 6.0 → Airline Coordinator | Filtered flight list; flight status, bay and last update time |
+| E10a | Airline Coordinator → 6.0 | Flight list request; flight lookup request (each carries the coordinator's session, which fixes the airline) |
+| E10b | 6.0 → Airline Coordinator | Own-airline flight list; flight status, bay and last update time |
 | E11a | Airport Operations Staff → 7.0 | Change log query |
 | E11b | 7.0 → Airport Operations Staff | Change log records |
 | E12 | Tower Status Feed → 3.0 | Flight status updates |
@@ -59,8 +59,8 @@
 | S8 | D4 → 6.0 | Bay allocations |
 | S9 | D5 → 7.0 | Change log records |
 | S10 | 3.0 → D5 | Override log entry (user ID, timestamp and reason) |
-| S11 | 4.0 → D5 | Runway reassignment/closure log entry |
-| S12 | 5.0 → D5 | Bay assignment log entry |
+| S11 | 4.0 → D5 | Runway reassignment/closure/reopening log entry (user ID, timestamp and reason) |
+| S12 | 5.0 → D5 | Bay reassignment log entry (user ID, timestamp and reason) |
 | S13 | 2.0 → 4.0 | Proposed schedule change; confirmed schedule change; flight cancellation details (flight ID and affected time slots) |
 | S14 | 4.0 → 2.0 | Runway availability/conflict result; runway allocation update/release confirmation |
 | S15 | 2.0 → 5.0 | Proposed schedule change; confirmed schedule change; flight cancellation details (flight ID and affected time slots) |

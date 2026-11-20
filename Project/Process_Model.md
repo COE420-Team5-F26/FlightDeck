@@ -6,7 +6,7 @@
 ## 2. Justification
 - **Operationally and safety relevant.** Incorrect runway assignments or bay conflicts translate to real operational hazards and costly disruptions. This is exactly the profile the Spiral model targets: risk driven development for systems where the cost of an undetected flaw is high.
 - **Significant technical risk across multiple fronts.** FlightDeck must keep flight status, runway usage, and bay occupancy consistent in real time. Getting the concurrency and conflict handling logic wrong is a deeper technical risk than a typical CRUD app, and that risk needs to be identified and addressed early.
-- **Requirements likely to evolve with domain understanding.** As we learn more about real airport coordination workflows (e.g., what ground control actually needs to see, how bay conflicts should be resolved), the requirements are likely to be refined. Spiral's cyclical communication–planning–modeling–construction–deployment loop is built for exactly this, unlike Waterfall's one shot planning.
+- **Requirements likely to evolve with domain understanding.** As we learn more about real airport coordination workflows (e.g., what ground control actually needs to see, how bay conflicts should be resolved), the requirements are likely to be refined. Spiral's cyclical communication, planning, modeling, construction and deployment loop is built for exactly this, unlike Waterfall's one shot planning.
 
 ## 3. Overheads / Drawbacks and Mitigation
 Spiral is expensive, time consuming and requires specialized risk assessment expertise. Since this team is small these overheads are real and need to be scaled down deliberately rather than ignored:
@@ -17,3 +17,12 @@ Spiral is expensive, time consuming and requires specialized risk assessment exp
 | Requires risk assessment expertise | Spiral assumes access to experienced risk analysts, which we don't have. | Keep risk analysis lightweight and practical: maintain a simple risk register reviewed at the start of each cycle instead of formal risk modeling techniques. |
 | Not well suited to small projects/teams | The full ceremony of Spiral can overwhelm a small team's capacity. | Combine the Planning and Modeling phases into a single short design session per cycle, and assign one member to own risk tracking so it doesn't become a full team burden. |
 | Risk of over engineering low risk features | Applying the same risk rigor to every feature wastes effort where the real risk is low. | Front load the highest risk elements (data consistency, conflict handling) into the earliest cycles, and treat lower risk features (dashboard display) with a lighter approach within the later cycles. |
+
+## 4. How the Cycles Map to the Schedule
+The WBS (`Project_Scheduling/WBS.md`) uses three cycles. Each cycle starts with planning and risk analysis and ends with a review/deployment task, which also plans the next cycle:
+
+| Cycle | Main risk addressed | WBS tasks | Days |
+|---|---|---|---|
+| 1 | Real-time data consistency (R4) | T1-T7 | 1-27 |
+| 2 | Runway/bay conflict logic and concurrency (R5) | T8-T12 | 28-40 |
+| 3 | Dashboard and integration | T13-T16 | 41-59 |
